@@ -110,7 +110,7 @@ class MLMScorer():
             masked_text = tokenized_text.copy()
             masked_text[i] = self.tokenizer.mask_token 
             masked_indexes.append(i)
-            masked_input_ids = self.tokenizer.encode(masked_text)
+            # masked_input_ids = self.tokenizer.encode(masked_text)
             masked_input_ids = self.tokenizer.encode(
                 self.tokenizer.convert_tokens_to_string(
                     masked_text
