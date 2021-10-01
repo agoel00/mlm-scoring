@@ -108,9 +108,14 @@ class MLMScorer():
         token_type_ids = []
         for i in range(len(tokenized_text)):
             masked_text = tokenized_text.copy()
-            masked_text[i] = '[MASK]'
+            masked_text[i] = self.tokenizer.mask_token 
             masked_indexes.append(i)
             masked_input_ids = self.tokenizer.encode(masked_text)
+            masked_input_ids = self.tokenizer.encode(
+                self.tokenizer.convert_tokens_to_string(
+                    masked_text
+                )
+            )
             input_ids.append(masked_input_ids)
             attention_mask.append([1] * len(masked_input_ids))
             token_type_ids.append([0] * len(masked_input_ids))
